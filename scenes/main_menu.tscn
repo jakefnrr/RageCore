@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://b4e0ifp0vwn5x"]
+
+[ext_resource type="Script" uid="uid://b8oa4dh6btljt" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+
+[node name="MainMenu" type="Control" unique_id=1556353180]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="Buttons" type="VBoxContainer" parent="." unique_id=1465586808]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayButton" type="Button" parent="Buttons" unique_id=1763161714]
+layout_mode = 2
+
+[node name="LevelSelectButton" type="Button" parent="Buttons" unique_id=1552558125]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="Buttons" unique_id=817373373]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="." unique_id=1432540076]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "PLATFORMER"
+
+[node name="LevelList" type="VBoxContainer" parent="." unique_id=670615751]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

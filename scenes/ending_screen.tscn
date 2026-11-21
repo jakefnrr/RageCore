@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://ch63j6j6kjk8t"]
+
+[ext_resource type="Script" uid="uid://dbm4wccblqh5r" path="res://scripts/ending_screen.gd" id="1_61pod"]
+
+[node name="EndingScreen" type="Control" unique_id=416382347]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_61pod")
+
+[node name="Backround" type="ColorRect" parent="." unique_id=1131419307]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="EndingTitle" type="Label" parent="." unique_id=1368108320]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 64
+text = "YOU WIN!!!"
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="." unique_id=1205348266]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "PLAY AGAIN"
+
+[node name="EndingMessage" type="Label" parent="." unique_id=1358464786]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "YOU LOSE!"

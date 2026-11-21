@@ -1,0 +1,216 @@
+[gd_scene format=4 uid="uid://ccs4ocvksq03y"]
+
+[ext_resource type="Texture2D" uid="uid://culmoxnj2j0tj" path="res://assets/images/TileMap/Terrain (16x16).png" id="1_g2h75"]
+[ext_resource type="PackedScene" uid="uid://cgjj2bmatef67" path="res://scenes/player.tscn" id="2_m7ahb"]
+[ext_resource type="Texture2D" uid="uid://culwpg2mgqh2w" path="res://assets/images/Green.png" id="3_m7ahb"]
+[ext_resource type="PackedScene" uid="uid://csvaocqf5u5bu" path="res://scenes/flag.tscn" id="4_6sh32"]
+[ext_resource type="PackedScene" uid="uid://dsuorsglbjjxd" path="res://scenes/apple.tscn" id="6_6sh32"]
+[ext_resource type="Script" uid="uid://b5b4ukxqkxc0o" path="res://scripts/exit1.gd" id="6_ejswk"]
+[ext_resource type="PackedScene" uid="uid://d0pbcr0m3gwnh" path="res://scenes/trapple.tscn" id="7_bbk5w"]
+[ext_resource type="PackedScene" uid="uid://dsrdjcef5o6kk" path="res://scripts/Spike.tscn" id="8_conm7"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wwpf4"]
+texture = ExtResource("1_g2h75")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:0/0 = 0
+10:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:1/0 = 0
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+9:1/0 = 0
+10:1/0 = 0
+12:1/0 = 0
+12:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+7:2/0 = 0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+8:2/0 = 0
+8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+19:2/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+17:4/0 = 0
+18:4/0 = 0
+19:4/0 = 0
+20:4/0 = 0
+21:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+17:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+17:8/0 = 0
+18:8/0 = 0
+19:8/0 = 0
+20:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+15:9/0 = 0
+17:9/0 = 0
+18:9/0 = 0
+19:9/0 = 0
+20:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+15:10/0 = 0
+18:10/0 = 0
+19:10/0 = 0
+20:10/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_nbvfj"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_wwpf4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cn70u"]
+size = Vector2(53, 101)
+
+[node name="LevelRoot" type="Node2D" unique_id=1110108420]
+
+[node name="backround" type="TextureRect" parent="." unique_id=1662077563]
+texture_filter = 1
+offset_right = 1290.0
+offset_bottom = 720.0
+texture = ExtResource("3_m7ahb")
+stretch_mode = 1
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=419358443]
+texture_filter = 1
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAAAAAAAAGAAEAAAAAAAEAAAAGAAEAAAAAAAIAAAAGAAEAAAAAAAMAAAAGAAEAAAAAAAQAAAAGAAEAAAAAAAUAAAAGAAEAAAAAAAYAAAAGAAEAAAABAAYAAAAMAAEAAAACAAwAAAAHAAAAAAADAAwAAAAIAAAAAAADAA0AAAAIAAEAAAAKAA0AAAAGAAEAAAALAA0AAAAIAAEAAAAWAA4AAAAHAAIAAAAXAA4AAAAHAAIAAAAYAA4AAAAHAAIAAAAZAA4AAAAHAAIAAAAaAA0AAAAIAAEAAAAaAAgAAAAIAAEAAAAaAAcAAAAIAAEAAAAaAAYAAAAIAAAAAAAZAAYAAAAHAAAAAAAaAAEAAAAIAAEAAAAaAAAAAAAIAAEAAAAaAAIAAAAIAAEAAAAaAAMAAAAIAAEAAAAaAAkAAAAIAAEAAAAaAAoAAAAIAAEAAAAaAAsAAAAIAAEAAAAaAAwAAAAIAAEAAAAaAA4AAAAIAAIAAAAVAA4AAAAHAAIAAAAUAA4AAAAHAAIAAAATAA4AAAAHAAIAAAASAA4AAAAHAAIAAAARAA4AAAAHAAIAAAAQAA4AAAAHAAIAAAAPAA4AAAAHAAIAAAAOAA4AAAAHAAIAAAANAA4AAAAHAAIAAAAMAA4AAAAHAAIAAAALAA4AAAAHAAIAAAAKAA4AAAAHAAIAAAAJAA4AAAAHAAIAAAAIAA4AAAAHAAIAAAAHAA4AAAAHAAIAAAAGAA4AAAAHAAIAAAAFAA4AAAAHAAIAAAAEAA4AAAAHAAIAAAADAA4AAAAHAAIAAAACAA4AAAAHAAIAAAABAA4AAAAHAAIAAAAAAA4AAAAGAAIAAAAAAA0AAAAGAAEAAAAAAAwAAAAGAAEAAAABAAwAAAAGAAAAAAAAAAsAAAAGAAEAAAAAAAoAAAAGAAEAAAAAAAcAAAAGAAEAAAAAAAgAAAAGAAEAAAAAAAkAAAAGAAEAAAABAA0AAAAGAAEAAAACAA0AAAAHAAEAAAAEAAgAAAAMAAEAAAAHAAoAAAAMAAEAAAAKAAwAAAAGAAAAAAALAAwAAAAIAAAAAAAOAAoAAAAGAAAAAAAPAAoAAAAIAAAAAAASAAgAAAAGAAAAAAATAAgAAAAIAAAAAAAWAAYAAAAGAAAAAAAXAAYAAAAHAAAAAAAYAAYAAAAHAAAAAAAZAAAAAAAHAAEAAAAYAAAAAAAHAAEAAAAXAAAAAAAHAAEAAAAWAAAAAAAHAAEAAAAVAAAAAAAHAAEAAAAUAAAAAAAHAAEAAAATAAAAAAAHAAEAAAASAAAAAAAHAAEAAAARAAAAAAAHAAEAAAAQAAAAAAAHAAEAAAAPAAAAAAAHAAEAAAAOAAAAAAAHAAEAAAANAAAAAAAHAAEAAAAMAAAAAAAHAAEAAAALAAAAAAAHAAEAAAAKAAAAAAAHAAEAAAAJAAAAAAAHAAEAAAAIAAAAAAAHAAEAAAAHAAAAAAAHAAEAAAAGAAAAAAAHAAEAAAAFAAAAAAAHAAEAAAAEAAAAAAAHAAEAAAADAAAAAAAHAAEAAAACAAAAAAAHAAEAAAABAAAAAAAHAAEAAAA=")
+tile_set = SubResource("TileSet_nbvfj")
+
+[node name="Player" parent="." unique_id=97744745 instance=ExtResource("2_m7ahb")]
+position = Vector2(157, 545)
+
+[node name="Flag" parent="." unique_id=1116337274 instance=ExtResource("4_6sh32")]
+position = Vector2(1091, 230)
+scale = Vector2(2, 1.859)
+
+[node name="Apple" parent="." unique_id=790180581 instance=ExtResource("6_6sh32")]
+position = Vector2(73, 266)
+scale = Vector2(3, 3)
+
+[node name="exit" type="Area2D" parent="." unique_id=227315708]
+position = Vector2(1284, 181)
+script = ExtResource("6_ejswk")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit" unique_id=769522710]
+position = Vector2(16.5, 60.5)
+shape = SubResource("RectangleShape2D_cn70u")
+
+[node name="Trapple" parent="." unique_id=1580481637 instance=ExtResource("7_bbk5w")]
+position = Vector2(1221, 647)
+
+[node name="Spike" parent="." unique_id=791860348 instance=ExtResource("8_conm7")]
+texture_filter = 1
+position = Vector2(717, 648)
