@@ -15,12 +15,101 @@ var has_jumped = false
 var is_dead = false
 var flashing = false
 
+
 func _ready() -> void:
 	death_text.hide()
 	death_text.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	death_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	death_text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	death_text.add_theme_font_size_override("font_size", 80)
+
+	if OS.has_feature("mobile") or DisplayServer.is_touchscreen_available():
+		create_mobile_controls()
+
+
+func create_mobile_controls() -> void:
+	var mobile_layer := CanvasLayer.new()
+	mobile_layer.name = "MobileControls"
+	mobile_layer.layer = 10
+	add_child(mobile_layer)
+
+	var controls := Control.new()
+	controls.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	controls.mouse_filter = Control.MOUSE_FILTER_PASS
+	mobile_layer.add_child(controls)
+
+	# JUMP - BOTTOM LEFT
+	create_button(
+		controls,
+		"JUMP",
+		"jump",
+		0.04, 0.76, 0.22, 0.96
+	)
+
+	# LEFT - BOTTOM RIGHT
+	create_button(
+		controls,
+		"◀",
+		"left",
+		0.72, 0.76, 0.84, 0.96
+	)
+
+	# RIGHT - BOTTOM RIGHT
+	create_button(
+		controls,
+		"▶",
+		"right",
+		0.86, 0.76, 0.98, 0.96
+	)
+
+
+func create_button(
+	parent: Control,
+	button_text: String,
+	action_name: String,
+	left: float,
+	top: float,
+	right: float,
+	bottom: float
+) -> void:
+	var button := Button.new()
+	button.text = button_text
+
+	button.anchor_left = left
+	button.anchor_top = top
+	button.anchor_right = right
+	button.anchor_bottom = bottom
+
+	button.offset_left = 0
+	button.offset_top = 0
+	button.offset_right = 0
+	button.offset_bottom = 0
+
+	button.focus_mode = Control.FOCUS_NONE
+	button.add_theme_font_size_override("font_size", 25)
+	button.add_theme_color_override("font_color", Color.WHITE)
+
+	var normal := StyleBoxFlat.new()
+	normal.bg_color = Color(0.08, 0.12, 0.08, 0.85)
+	normal.set_border_width_all(3)
+	normal.border_color = Color(0.2, 1.0, 0.3)
+	normal.set_corner_radius_all(18)
+
+	var pressed := normal.duplicate()
+	pressed.bg_color = Color(0.15, 0.55, 0.2, 0.95)
+
+	button.add_theme_stylebox_override("normal", normal)
+	button.add_theme_stylebox_override("pressed", pressed)
+
+	button.button_down.connect(func():
+		Input.action_press(action_name)
+	)
+
+	button.button_up.connect(func():
+		Input.action_release(action_name)
+	)
+
+	parent.add_child(button)
 
 
 func _physics_process(delta: float) -> void:
@@ -71,6 +160,10 @@ func die() -> void:
 
 	is_dead = true
 	velocity = Vector2.ZERO
+
+	Input.action_release("jump")
+	Input.action_release("left")
+	Input.action_release("right")
 
 	death_text.text = "GG NOOB"
 	death_text.show()
