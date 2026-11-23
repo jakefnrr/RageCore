@@ -9,6 +9,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -750.0
 const LEVEL_1_PATH = "res://scenes/level1.tscn"
+const MOBILE_SCREEN_SHIFT = 180.0
 
 var jumps_remaining = 0
 var has_jumped = false
@@ -23,9 +24,23 @@ func _ready() -> void:
 	death_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	death_text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	death_text.add_theme_font_size_override("font_size", 80)
+	$CanvasLayer.follow_viewport_enabled = false
 
 	if OS.has_feature("mobile") or DisplayServer.is_touchscreen_available():
 		create_mobile_controls()
+
+	release_move_actions()
+
+
+func _exit_tree() -> void:
+	get_tree().root.canvas_transform = Transform2D.IDENTITY
+	release_move_actions()
+
+
+func release_move_actions() -> void:
+	Input.action_release("jump")
+	Input.action_release("left")
+	Input.action_release("right")
 
 
 func _input(event: InputEvent) -> void:
@@ -42,7 +57,10 @@ func create_mobile_controls() -> void:
 	var mobile_layer := CanvasLayer.new()
 	mobile_layer.name = "MobileControls"
 	mobile_layer.layer = 10
+	mobile_layer.follow_viewport_enabled = false
 	add_child(mobile_layer)
+
+	get_tree().root.canvas_transform = Transform2D(0, Vector2(0, -MOBILE_SCREEN_SHIFT))
 
 	var controls := Control.new()
 	controls.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -54,7 +72,8 @@ func create_mobile_controls() -> void:
 		controls,
 		"JUMP",
 		"jump",
-		0.02, 0.80, 0.20, 0.995
+		0.02, 0.68, 0.26, 0.995,
+		30
 	)
 
 	# LEFT - BOTTOM RIGHT
@@ -62,7 +81,8 @@ func create_mobile_controls() -> void:
 		controls,
 		"◀",
 		"left",
-		0.72, 0.80, 0.84, 0.995
+		0.68, 0.74, 0.82, 0.995,
+		40
 	)
 
 	# RIGHT - BOTTOM RIGHT
@@ -70,7 +90,8 @@ func create_mobile_controls() -> void:
 		controls,
 		"▶",
 		"right",
-		0.86, 0.80, 0.98, 0.995
+		0.83, 0.74, 0.97, 0.995,
+		40
 	)
 
 
@@ -81,7 +102,8 @@ func create_button(
 	left: float,
 	top: float,
 	right: float,
-	bottom: float
+	bottom: float,
+	font_size: int = 30
 ) -> void:
 	var button := Button.new()
 	button.text = button_text
@@ -97,7 +119,7 @@ func create_button(
 	button.offset_bottom = 0
 
 	button.focus_mode = Control.FOCUS_NONE
-	button.add_theme_font_size_override("font_size", 25)
+	button.add_theme_font_size_override("font_size", font_size)
 	button.add_theme_color_override("font_color", Color.WHITE)
 
 	var normal := StyleBoxFlat.new()
