@@ -24,7 +24,7 @@ ProgressManager="*uid://b8yino3wegyvi"
 window/size/viewport_width=1290
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
 
 [input]
 
@@ -56,3 +56,4 @@ jump={
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+rendering/environment/defaults/default_clear_color=Color(0.25, 0.25, 0.25, 1)
