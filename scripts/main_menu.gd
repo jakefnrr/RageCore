@@ -17,7 +17,18 @@ const LEVEL_PATHS = [
 	"res://scenes/level6.tscn",
 	"res://scenes/level7.tscn",
 	"res://scenes/level8.tscn",
-	"res://scenes/level9.tscn"
+	"res://scenes/level9.tscn",
+	"res://scenes/level10.tscn",
+	"res://scenes/level11.tscn",
+	"res://scenes/level12.tscn",
+	"res://scenes/level13.tscn",
+	"res://scenes/level14.tscn",
+	"res://scenes/level15.tscn",
+	"res://scenes/level16.tscn",
+	"res://scenes/level17.tscn",
+	"res://scenes/level18.tscn",
+	"res://scenes/level19.tscn",
+	"res://scenes/level20.tscn"
 ]
 
 var grid: GridContainer
@@ -148,7 +159,7 @@ func create_level_buttons() -> void:
 	for child in grid.get_children():
 		child.queue_free()
 
-	for i in range(LEVEL_PATHS.size()):
+	for i in range(20):
 		var level_number = i + 1
 		var button := Button.new()
 
@@ -187,7 +198,7 @@ func style_level_button(button: Button, color_hex: String) -> void:
 
 
 func _on_play_pressed() -> void:
-	var level_number = clamp(ProgressManager.highest_unlocked_level, 1, LEVEL_PATHS.size())
+	var level_number = clamp(ProgressManager.highest_unlocked_level, 1, 20)
 	load_level(level_number)
 
 
