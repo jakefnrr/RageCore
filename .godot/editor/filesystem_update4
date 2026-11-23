@@ -1,0 +1,4 @@
+res://scripts/main_menu.gd
+res://scenes/level3.tscn
+res://scripts/player.gd
+res://scripts/progress.gd
