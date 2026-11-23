@@ -9,7 +9,8 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -750.0
 const LEVEL_1_PATH = "res://scenes/level1.tscn"
-const MOBILE_VIEW_SCALE := 0.72
+const MOBILE_VIEW_SCALE := 0.56
+const MOBILE_TOP_MARGIN := 140.0
 const MOBILE_UI_TOP := 0.76
 
 var jumps_remaining = 0
@@ -104,10 +105,14 @@ func create_mobile_controls() -> void:
 	mobile_layer.follow_viewport_enabled = false
 	add_child(mobile_layer)
 
-	var safe_h := 720.0 * MOBILE_UI_TOP
+	var band_top := MOBILE_TOP_MARGIN
+	var band_h := 720.0 * MOBILE_UI_TOP - band_top
 	var scaled_h := 720.0 * MOBILE_VIEW_SCALE
 	var scaled_w := 1290.0 * MOBILE_VIEW_SCALE
-	var offset := Vector2((1290.0 - scaled_w) * 0.5, (safe_h - scaled_h) * 0.5)
+	var offset := Vector2(
+		(1290.0 - scaled_w) * 0.5,
+		band_top + (band_h - scaled_h) * 0.5
+	)
 	get_tree().root.canvas_transform = Transform2D(
 		Vector2(MOBILE_VIEW_SCALE, 0),
 		Vector2(0, MOBILE_VIEW_SCALE),
