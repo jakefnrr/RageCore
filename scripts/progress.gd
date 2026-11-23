@@ -36,7 +36,7 @@ func save_progress() -> void:
 
 
 func unlock_level(level_number: int) -> void:
-	if level_number > highest_unlocked_level and level_number <= 20:
+	if level_number > highest_unlocked_level and level_number <= 9:
 		highest_unlocked_level = level_number
 		save_progress()
 

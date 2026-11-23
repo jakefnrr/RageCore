@@ -14,6 +14,7 @@ var jumps_remaining = 0
 var has_jumped = false
 var is_dead = false
 var flashing = false
+var mobile_controls_created := false
 
 
 func _ready() -> void:
@@ -27,7 +28,17 @@ func _ready() -> void:
 		create_mobile_controls()
 
 
+func _input(event: InputEvent) -> void:
+	if not mobile_controls_created and event is InputEventScreenTouch:
+		create_mobile_controls()
+
+
 func create_mobile_controls() -> void:
+	if mobile_controls_created:
+		return
+
+	mobile_controls_created = true
+
 	var mobile_layer := CanvasLayer.new()
 	mobile_layer.name = "MobileControls"
 	mobile_layer.layer = 10
@@ -43,7 +54,7 @@ func create_mobile_controls() -> void:
 		controls,
 		"JUMP",
 		"jump",
-		0.04, 0.76, 0.22, 0.96
+		0.02, 0.80, 0.20, 0.995
 	)
 
 	# LEFT - BOTTOM RIGHT
@@ -51,7 +62,7 @@ func create_mobile_controls() -> void:
 		controls,
 		"◀",
 		"left",
-		0.72, 0.76, 0.84, 0.96
+		0.72, 0.80, 0.84, 0.995
 	)
 
 	# RIGHT - BOTTOM RIGHT
@@ -59,7 +70,7 @@ func create_mobile_controls() -> void:
 		controls,
 		"▶",
 		"right",
-		0.86, 0.76, 0.98, 0.96
+		0.86, 0.80, 0.98, 0.995
 	)
 
 
