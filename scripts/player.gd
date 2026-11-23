@@ -9,7 +9,8 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -750.0
 const LEVEL_1_PATH = "res://scenes/level1.tscn"
-const MOBILE_SCREEN_SHIFT = 180.0
+const MOBILE_VIEW_SCALE := 0.72
+const MOBILE_UI_TOP := 0.76
 
 var jumps_remaining = 0
 var has_jumped = false
@@ -60,7 +61,15 @@ func create_mobile_controls() -> void:
 	mobile_layer.follow_viewport_enabled = false
 	add_child(mobile_layer)
 
-	get_tree().root.canvas_transform = Transform2D(0, Vector2(0, -MOBILE_SCREEN_SHIFT))
+	var safe_h := 720.0 * MOBILE_UI_TOP
+	var scaled_h := 720.0 * MOBILE_VIEW_SCALE
+	var scaled_w := 1290.0 * MOBILE_VIEW_SCALE
+	var offset := Vector2((1290.0 - scaled_w) * 0.5, (safe_h - scaled_h) * 0.5)
+	get_tree().root.canvas_transform = Transform2D(
+		Vector2(MOBILE_VIEW_SCALE, 0),
+		Vector2(0, MOBILE_VIEW_SCALE),
+		offset
+	)
 
 	var controls := Control.new()
 	controls.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -72,8 +81,8 @@ func create_mobile_controls() -> void:
 		controls,
 		"JUMP",
 		"jump",
-		0.02, 0.68, 0.26, 0.995,
-		30
+		0.02, 0.76, 0.30, 0.995,
+		32
 	)
 
 	# LEFT - BOTTOM RIGHT
@@ -81,8 +90,8 @@ func create_mobile_controls() -> void:
 		controls,
 		"◀",
 		"left",
-		0.68, 0.74, 0.82, 0.995,
-		40
+		0.70, 0.78, 0.85, 0.995,
+		42
 	)
 
 	# RIGHT - BOTTOM RIGHT
@@ -90,8 +99,8 @@ func create_mobile_controls() -> void:
 		controls,
 		"▶",
 		"right",
-		0.83, 0.74, 0.97, 0.995,
-		40
+		0.86, 0.78, 0.995, 0.995,
+		42
 	)
 
 
