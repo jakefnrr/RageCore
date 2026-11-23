@@ -17,6 +17,8 @@ var has_jumped = false
 var is_dead = false
 var flashing = false
 var mobile_controls_created := false
+var mobile_buttons: Dictionary = {}
+var held_touch_actions: Dictionary = {}
 
 
 func _ready() -> void:
@@ -31,6 +33,8 @@ func _ready() -> void:
 		create_mobile_controls()
 
 	release_move_actions()
+	restore_held_keyboard_actions()
+	call_deferred("restore_held_touch_actions")
 
 
 func _exit_tree() -> void:
@@ -45,8 +49,46 @@ func release_move_actions() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not mobile_controls_created and event is InputEventScreenTouch:
-		create_mobile_controls()
+	if not event is InputEventScreenTouch:
+		return
+
+	if event.pressed:
+		if not mobile_controls_created:
+			create_mobile_controls()
+
+		for action_name in mobile_buttons:
+			var button: Button = mobile_buttons[action_name]
+			if button.get_global_rect().has_point(event.position):
+				held_touch_actions[event.index] = action_name
+				Input.action_press(action_name)
+				break
+	else:
+		var action_name: String = held_touch_actions.get(event.index, "")
+		if action_name != "":
+			Input.action_release(action_name)
+			held_touch_actions.erase(event.index)
+
+
+func restore_held_keyboard_actions() -> void:
+	for action_name in ["left", "right", "jump"]:
+		for event in InputMap.action_get_events(action_name):
+			if event is InputEventKey:
+				var code: int = event.physical_keycode if event.physical_keycode != 0 else event.keycode
+				if code != 0 and Input.is_key_pressed(code):
+					Input.action_press(action_name)
+					break
+
+
+func restore_held_touch_actions() -> void:
+	for index in ProgressManager.held_touch_positions:
+		var position: Vector2 = ProgressManager.held_touch_positions[index]
+
+		for action_name in mobile_buttons:
+			var button: Button = mobile_buttons[action_name]
+			if button.get_global_rect().has_point(position):
+				held_touch_actions[index] = action_name
+				Input.action_press(action_name)
+				break
 
 
 func create_mobile_controls() -> void:
@@ -54,6 +96,7 @@ func create_mobile_controls() -> void:
 		return
 
 	mobile_controls_created = true
+	mobile_buttons.clear()
 
 	var mobile_layer := CanvasLayer.new()
 	mobile_layer.name = "MobileControls"
@@ -77,7 +120,7 @@ func create_mobile_controls() -> void:
 	mobile_layer.add_child(controls)
 
 	# JUMP - BOTTOM LEFT
-	create_button(
+	mobile_buttons["jump"] = create_button(
 		controls,
 		"JUMP",
 		"jump",
@@ -86,7 +129,7 @@ func create_mobile_controls() -> void:
 	)
 
 	# LEFT - BOTTOM RIGHT
-	create_button(
+	mobile_buttons["left"] = create_button(
 		controls,
 		"◀",
 		"left",
@@ -95,7 +138,7 @@ func create_mobile_controls() -> void:
 	)
 
 	# RIGHT - BOTTOM RIGHT
-	create_button(
+	mobile_buttons["right"] = create_button(
 		controls,
 		"▶",
 		"right",
@@ -113,7 +156,7 @@ func create_button(
 	right: float,
 	bottom: float,
 	font_size: int = 30
-) -> void:
+) -> Button:
 	var button := Button.new()
 	button.text = button_text
 
@@ -152,6 +195,7 @@ func create_button(
 	)
 
 	parent.add_child(button)
+	return button
 
 
 func _physics_process(delta: float) -> void:

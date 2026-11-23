@@ -5,10 +5,19 @@ const SAVE_PATH = "user://progress.cfg"
 
 var highest_unlocked_level: int = 1
 var collected_apples: Array[int] = []
+var held_touch_positions: Dictionary = {}
 
 
 func _ready() -> void:
 	load_progress()
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			held_touch_positions[event.index] = event.position
+		else:
+			held_touch_positions.erase(event.index)
 
 
 func load_progress() -> void:
